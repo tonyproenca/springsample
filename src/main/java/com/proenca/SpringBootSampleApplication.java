@@ -8,8 +8,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.proenca.domain.Categoria;
+import com.proenca.domain.Cidade;
+import com.proenca.domain.Estado;
 import com.proenca.domain.Produto;
 import com.proenca.repositories.CategoriaRepository;
+import com.proenca.repositories.CidadeRepository;
+import com.proenca.repositories.EstadoRepository;
 import com.proenca.repositories.ProdutoRepository;
 
 @SpringBootApplication
@@ -19,6 +23,10 @@ public class SpringBootSampleApplication implements CommandLineRunner{
 	private CategoriaRepository categoriaRepository;
 	@Autowired
 	private ProdutoRepository produtoRepository;
+	@Autowired
+	private EstadoRepository estadoRepository;
+	@Autowired
+	private CidadeRepository cidadeRepository;
 	
 	
 	public static void main(String[] args) {
@@ -50,6 +58,20 @@ public class SpringBootSampleApplication implements CommandLineRunner{
 		
 		categoriaRepository.saveAll(Arrays.asList(cat1, cat2));	
 		produtoRepository.saveAll(Arrays.asList(p1, p2, p3));
+		
+		Estado est1 = new Estado (null, "Minas Gerais");
+		Estado est2 = new Estado (null, "São Paulo");
+		
+		Cidade c1 = new Cidade (null, "Uberlandia", est2);
+		Cidade c2 = new Cidade (null, "Sao Paulo", est2);
+		Cidade c3 = new Cidade (null, "Campinas", est1);
+		
+		est2.getCidades().addAll(Arrays.asList(c2, c3));
+		est1.getCidades().add(c1);
+		
+		estadoRepository.saveAll(Arrays.asList(est1, est2));
+		cidadeRepository.saveAll(Arrays.asList(c1, c2, c3));
+		
 	}	
 	
 }
