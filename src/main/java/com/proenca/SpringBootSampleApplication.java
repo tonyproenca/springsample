@@ -9,10 +9,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.proenca.domain.Categoria;
 import com.proenca.domain.Cidade;
+import com.proenca.domain.Cliente;
+import com.proenca.domain.Endereco;
 import com.proenca.domain.Estado;
 import com.proenca.domain.Produto;
+import com.proenca.domain.enums.TipoCliente;
 import com.proenca.repositories.CategoriaRepository;
 import com.proenca.repositories.CidadeRepository;
+import com.proenca.repositories.ClienteRepository;
+import com.proenca.repositories.EnderecoRepository;
 import com.proenca.repositories.EstadoRepository;
 import com.proenca.repositories.ProdutoRepository;
 
@@ -27,6 +32,10 @@ public class SpringBootSampleApplication implements CommandLineRunner{
 	private EstadoRepository estadoRepository;
 	@Autowired
 	private CidadeRepository cidadeRepository;
+	@Autowired 
+	private ClienteRepository clienteRepository;
+	@Autowired
+	private EnderecoRepository enderecoRepository;
 	
 	
 	public static void main(String[] args) {
@@ -71,6 +80,17 @@ public class SpringBootSampleApplication implements CommandLineRunner{
 		
 		estadoRepository.saveAll(Arrays.asList(est1, est2));
 		cidadeRepository.saveAll(Arrays.asList(c1, c2, c3));
+		
+		Cliente cli1 = new Cliente(null, "Maria", "maria@gmail.com", "333.333.333-33", TipoCliente.PESSOAFISICA);
+		cli1.getTelefones().addAll(Arrays.asList("27363342", "85646464"));
+		
+		Endereco e1 = new Endereco(null, "Rua Flores", "300", "Apto 303", "Jardim", "00000-000", cli1, c1);
+		Endereco e2 = new Endereco(null, "Avenida Matos", "105", "Sala 800", "Centro", "38777-465", cli1, c2);
+		
+		cli1.getEnderecos().addAll(Arrays.asList(e1, e2));
+		
+		clienteRepository.saveAll(Arrays.asList(cli1));
+		enderecoRepository.saveAll(Arrays.asList(e1, e2));
 		
 	}	
 	
