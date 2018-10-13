@@ -2,9 +2,11 @@ package com.proenca.domain;
 
 import javax.persistence.Entity;
 
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.proenca.domain.enums.EstadoPagamento;
 
 @Entity
+@JsonTypeName("pagamentoComBoleto")
 public class PagamentoComCartao extends Pagamento{
 	private static final long serialVersionUID = 1L;
 
