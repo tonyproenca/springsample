@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import com.proenca.DTO.CategoriaDTO;
 import com.proenca.domain.Categoria;
-import com.proenca.domain.Cliente;
 import com.proenca.repositories.CategoriaRepository;
 import com.proenca.service.exceptions.DataIntegrityException;
 import com.proenca.service.exceptions.ObjectNotFoundException;
