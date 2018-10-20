@@ -7,5 +7,7 @@ import com.proenca.domain.Pagamento;
 
 @Repository
 public interface PagamentoRepository extends JpaRepository<Pagamento, Integer>{
+	
+	
 
 }
