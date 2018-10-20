@@ -22,4 +22,5 @@
 /nbbuild/
 /dist/
 /nbdist/
-/.nb-gradle/
+/.nb-gradle/"YOUR-FILE-WITH-SENSITIVE-DATA" 
+"application.properties" 
